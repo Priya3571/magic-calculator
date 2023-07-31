@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Calculator</title>
+    <link rel="icon" type="image/x-icon" href="/image/extra/cal.png">
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        <h1>Calculator</h1>
+    </header>
+    <div class="calculator" >
+        <input type="texr" class="result" value="" readonly>
+
+        <div class="button butnu num">
+            <button type="button butnu" class="clear p-2"><div class="bg-transparent">AC</div></button>
+            <button type="button butnu" class="equal_to p-2"><div class="bg-transparent">=</div></button>
+            <button type="button butnu" class="delete p-2"><div class="bg-transparent">DEL</div></button>
+
+        </div>
+
+        <div class="num">
+            <button type="button butnu" class="calc-btn">/</button>
+            <button type="button butnu" class="calc-btn">*</button>
+            <button type="button butnu" class="calc-btn">(</button>
+
+        </div>
+        <div class="num">
+            <button type="button butnu" class="calc-btn">)</button>
+            <button type="button butnu" class="calc-btn">+</button>
+            <button type="button butnu" class="calc-btn">.</button>
+
+        </div>
+        <div class="num">
+            <button type="button butnu" class="calc-btn">-</button>
+            <button type="button butnu" class="calc-btn">1</button>
+            <button type="button butnu" class="calc-btn">2</button>
+
+        </div>
+        <div class="num">
+            <button type="button butnu" class="calc-btn">3</button>
+            <button type="button butnu" class="calc-btn">4</button>
+            <button type="button butnu" class="calc-btn">5</button>
+
+        </div>
+        <div class="num">
+            <button type="button butnu" class="calc-btn">6</button>
+            <button type="button butnu" class="calc-btn">7</button>
+            <button type="button butnu" class="calc-btn">8</button>
+
+        </div>
+        <div class="num">
+            <button type="button butnu" class="calc-btn">9</button>
+            <button type="button butnu" class="calc-btn">0</button>
+            <button type="button butnu" class="calc-btn">00</button>
+        </div>
+    </div>
+    <audio id="correctSound" src="/m/sad (1).mp3"></audio>
+    <audio id="wrongSound" src="/m/Sigma (1).mp3"></audio>
+
+    <script>
+        
+        $(document).ready(function () {
+            // Clear the result
+            $('.clear').click(function () {
+                $('.result').val('');
+                $("#wrongSound")[0].play();
+            });
+
+            // Perform calculation when equals button is clicked
+            $('.equal_to').click(function () {
+                var expression = $('.result').val();
+                var result = eval(expression);
+                $('.result').val(result);
+                $("#wrongSound")[0].play();
+            });
+
+            // Delete the last character in the result
+            $('.delete').click(function () {
+                var currentValue = $('.result').val();
+                $('.result').val(currentValue.slice(0, -1));
+                $("#wrongSound")[0].play();
+            });
+
+            // Append the clicked button value to the result
+            $('.calc-btn').click(function () {
+                $( "#button" ).toggle( "explode" );
+                var value = $(this).text();
+                     $(this).css({
+                        "position": "absolute", "color": "red" , "top": "65px" 
+
+                    })
+                    setTimeout(()=>{
+                        $(this).css({
+                            "position": "relative", "color": "red" , "top": "0px"
+    
+                        })
+                        $("#correctSound")[0].play();
+                    },2000)
+            
+                var currentValue = $('.result').val();
+                $('.result').val(currentValue + value);
+            });
+        });
+        function palymusic(){
+            return 
+        }
+
+    </script>
+
+
+</body>
+
+</html>
